@@ -1,0 +1,153 @@
+/* ===== Design Tokens ===== */
+:root {
+  --font-primary: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  /* Backgrounds */
+  --color-bg: #060d1b;
+  --color-bg-sidebar: #0a1128;
+  --color-bg-card: #0f172a;
+  --color-bg-card-hover: #151e30;
+  --color-bg-input: #111827;
+  --color-bg-topbar: rgba(6, 13, 27, 0.92);
+  --color-surface: #111827;
+
+  /* Borders */
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(255, 255, 255, 0.15);
+  --color-border-input: rgba(255, 255, 255, 0.12);
+
+  /* Text */
+  --color-text: #f7f8fb;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
+
+  /* Accents */
+  --color-gold: #f3ba2f;
+  --color-gold-bright: #ffc61e;
+  --color-gold-dark: #d4a017;
+  --color-blue: #3b82f6;
+  --color-blue-dark: #1e40af;
+  --color-green: #22c55e;
+  --color-green-dark: #15803d;
+  --color-red: #ef4444;
+  --color-red-dark: #b91c1c;
+  --color-violet: #8b5cf6;
+  --color-teal: #14b8a6;
+  --color-orange: #f97316;
+  --color-cyan: #06b6d4;
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.45);
+  --shadow-gold: 0 4px 20px rgba(243, 186, 47, 0.2);
+  --shadow-blue: 0 4px 20px rgba(59, 130, 246, 0.2);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 400ms ease;
+
+  /* Layout */
+  --sidebar-width: 260px;
+  --sidebar-collapsed: 72px;
+  --topbar-height: 64px;
+}
+
+/* ===== Reset ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  background: var(--color-bg);
+  min-width: 320px;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font: inherit; border: none; cursor: pointer; background: transparent; }
+img { display: block; max-width: 100%; height: auto; }
+ul, ol { list-style: none; }
+h1, h2, h3, h4, h5, h6 { color: var(--color-text); line-height: 1.2; }
+
+input, textarea, select {
+  font: inherit;
+  color: var(--color-text);
+  background: var(--color-bg-input);
+  border: 1px solid var(--color-border-input);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px rgba(243, 186, 47, 0.1);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+/* ===== Utility ===== */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-16px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease forwards;
+}

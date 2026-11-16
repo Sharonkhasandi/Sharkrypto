@@ -1,0 +1,257 @@
+
+.market-ticker {
+  width: 100%;
+  min-height: 48px;
+  position: relative;
+  z-index: 20;
+  background: #14161c;
+  color: #f1f1f1;
+  overflow: visible;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ticker-container {
+  width: 100%;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: visible;
+}
+
+/* Currency selector */
+
+.ticker-currency-area {
+  flex-shrink: 0;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 30;
+  background: #14161c;
+}
+
+.currency-selector {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  color: #f1f1f1;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.selected-currency {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: #e5e5e5;
+  user-select: none;
+}
+
+.currency-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #a8abb3;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.currency-toggle:hover {
+  color: #ffffff;
+}
+
+.currency-dropdown {
+  position: absolute;
+  top: calc(100% + 1px);
+  left: 0;
+  min-width: 110px;
+  max-height: 260px;
+  overflow-y: auto;
+  padding: 5px;
+  background: #1c1f26;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 5px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+
+.currency-option {
+  display: block;
+  width: 100%;
+  padding: 9px 10px;
+  text-align: left;
+  border: none;
+  border-radius: 3px;
+  background: transparent;
+  color: #c7c9ce;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.currency-option:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.currency-option.selected {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* Scrolling ticker */
+
+.ticker-viewport {
+  flex: 1;
+  min-width: 0;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.ticker-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: ticker-scroll 45s linear infinite;
+  will-change: transform;
+}
+
+.ticker-viewport:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+.ticker-group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ticker-coin {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 20px;
+  white-space: nowrap;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.coin-symbol {
+  color: #e5e5e5;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.coin-price {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.coin-change {
+  font-size: 10px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.coin-change.positive {
+  color: #21c78a;
+}
+
+.coin-change.negative {
+  color: #f05b66;
+}
+
+@keyframes ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* API status */
+
+.ticker-status {
+  flex-shrink: 0;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 15px;
+  background: #14161c;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  color: #9da1aa;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  white-space: nowrap;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  display: inline-block;
+  border-radius: 50%;
+  background: #21c78a;
+}
+
+.status-dot.status-error {
+  background: #f05b66;
+}
+
+.ticker-message {
+  padding: 0 18px;
+  color: #a8abb3;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.ticker-error {
+  color: #f05b66;
+}
+
+/* Responsive layout */
+
+@media (max-width: 600px) {
+  .ticker-status {
+    display: none;
+  }
+
+  .currency-selector {
+    padding: 0 10px;
+  }
+
+  .ticker-coin {
+    gap: 6px;
+    padding: 0 12px;
+  }
+
+  .ticker-track {
+    animation-duration: 35s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+  }
+}
